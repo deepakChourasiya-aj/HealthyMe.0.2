@@ -3,7 +3,7 @@ const { addProduct, allProducts, getProductById, updateProductsById, deleteProdu
 const productRoute = express.Router();
 
 // Create a new product
-productRoute.post('/products',addProduct);
+  productRoute.post('/products',addProduct);
   
   // Get all products
   productRoute.get('/products',allProducts);

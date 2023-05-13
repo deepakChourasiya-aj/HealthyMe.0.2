@@ -3,18 +3,20 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const authenticated = (req, res, next) => {
   const token = req.cookies.token || req.headers.authorization;
+  console.log(token,'token.....');
   try {
     if (token) {
-      const decoded = jwt.verify(token, process.env.token);
-      if (docoded) {
+      let decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded.userID,'userid....................')
+      if (decoded) {
         req.body.userID = decoded.userID;
         next();
       } else {
-        res.send({ msg: "Invalid token" });
+        return res.send({ msg: "Invalid token" });
       }
     }
   } catch (error) {
-    res.send({ msg: "server error" });
+    res.send({ msg: "error in middlewares" });
     console.log(error);
   }
 };

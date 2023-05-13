@@ -13,9 +13,8 @@ const addProduct = async (req, res) => {
 
 const allProducts = async (req, res) => {
   try {
-    const product = new Product(req.body);
-    await product.save();
-    res.status(201).json(product);
+    const product = await Product.find({});
+    res.status(201).json({msg:"all proudcts",product});
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Server error" });
