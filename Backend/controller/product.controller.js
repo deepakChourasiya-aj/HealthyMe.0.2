@@ -13,13 +13,40 @@ const addProduct = async (req, res) => {
 
 const allProducts = async (req, res) => {
   try {
-    const product = await Product.find({});
-    res.status(201).json({msg:"all proudcts",product});
+    let order = req.query;
+    if (order.sort === "asc") {
+      let product = await Product.find().sort({ price: 1 });
+      return res.status(200).json({ msg: "products asc", product });
+    } else if (order.sort === "desc") {
+      let product = await Product.find().sort({ price: -1 });
+      return res.status(200).json({ msg: "products in desc", product });
+    } else if (order.category) {
+      let category = order.category;
+      let product = await Product.find({ category: category });
+      return res.status(200).json({ msg: "products in desc", product });
+    } else {
+      let product = await Product.find({});
+      return res.status(200).json({ msg: "all products ", product });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Server error" });
   }
 };
+
+const pagination = async (req, res) => {
+  try {
+    const { page = 1, limit = 10 } = req.query;
+    let product = await Product.find()
+      .limit(limit)
+      .skip((page - 1) * limit);
+    res.send({ msg: "products", product });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error" });
+  }
+}
+
 
 const getProductById = async (req, res) => {
   try {
@@ -73,4 +100,5 @@ module.exports = {
   getProductById,
   updateProductsById,
   deleteProductsById,
+  pagination
 };
