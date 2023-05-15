@@ -9,6 +9,7 @@ const { userRouter } = require("./routes/user.route");
 const { Product } = require("./models/product.model");
 const { productRoute } = require("./routes/product.route");
 const { authenticated } = require("./middleware/authenticator.middleware");
+const { admintRoute } = require("./routes/admin.route");
 
 app.use(cookieParser());
 app.use(express.json());
@@ -22,6 +23,8 @@ app.use("/api", userRouter);
 // product route routes;
 app.use("/api", productRoute);
 
+//admin route;
+app.use("/api", admintRoute);
 // Start the server and establish a database connection
 app.listen(process.env.PORT || 8080, async () => {
   try {
