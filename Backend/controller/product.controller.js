@@ -14,15 +14,19 @@ const addProduct = async (req, res) => {
 const allProducts = async (req, res) => {
   try {
     let order = req.query;
-    if (order.sort === "asc") {
+    if (order.sort == "asc") {
       let product = await Product.find().sort({ price: 1 });
       return res.status(200).json({ msg: "products asc", product });
-    } else if (order.sort === "desc") {
+    } else if (order.sort == "desc") {
       let product = await Product.find().sort({ price: -1 });
       return res.status(200).json({ msg: "products in desc", product });
     } else if (order.category) {
       let category = order.category;
       let product = await Product.find({ category: category });
+      return res.status(200).json({ msg: "products in desc", product });
+    } else if (order.discount >= 30) {
+      let discount = order.discount;
+      let product = await Product.find({ discount: discount });
       return res.status(200).json({ msg: "products in desc", product });
     } else {
       let product = await Product.find({});
@@ -45,15 +49,13 @@ const pagination = async (req, res) => {
     console.error(error);
     res.status(500).json({ msg: "Server error" });
   }
-}
-
+};
 
 const getProductById = async (req, res) => {
   try {
     const id = req.params.id;
     const products = await Product.findOne({ _id: id });
-    res.status(200).json
-    ({ msg: "products", products });
+    res.status(200).json({ msg: "products", products });
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Server error" });
@@ -100,5 +102,5 @@ module.exports = {
   getProductById,
   updateProductsById,
   deleteProductsById,
-  pagination
+  pagination,
 };

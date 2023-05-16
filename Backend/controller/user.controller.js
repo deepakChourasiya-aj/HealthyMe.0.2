@@ -68,7 +68,7 @@ const login = async (req, res) => {
           .cookie("token", token, cookieOptions)
           .cookie("refreshToken", refreshToken, cookieOptionsForRefreshToken);
         return res.status(200).json({
-          msg: "Login successful...",
+          msg: "Login successful",
           name: findUser.name,
           token,
           refreshToken,

@@ -10,10 +10,10 @@ const { Product } = require("./models/product.model");
 const { productRoute } = require("./routes/product.route");
 const { authenticated } = require("./middleware/authenticator.middleware");
 const { admintRoute } = require("./routes/admin.route");
-
+const cors = require("cors");
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(cors())
 app.get("/", (req, res) => {
   res.send("hello world!");
 });

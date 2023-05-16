@@ -5,7 +5,7 @@ const {
   getProductById,
   updateProductsById,
   deleteProductsById,
-  pagination,
+  pagination
 } = require("../controller/product.controller");
 const { Product } = require("../models/product.model");
 const productRoute = express.Router();
