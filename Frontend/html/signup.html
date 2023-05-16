@@ -45,7 +45,7 @@
             <div class="line"></div>
 
             <div class="media-options">
-                <a href="#" class="field github">
+                <a href="http://localhost:8080/auth/github/callback" class="field github">
                     <img src="../images/github.png" alt="" class="github-img">
                     <span>Login with Github</span>
                 </a>
@@ -63,7 +63,7 @@
 
 </html>
 <script>
-const baseURL = "http://localhost:9000/api"
+    const baseURL = "http://localhost:9000/api"
 
     let button = document.querySelector('#signup')
     button.addEventListener('click', (e) => {
@@ -71,7 +71,7 @@ const baseURL = "http://localhost:9000/api"
         let name = document.querySelector('#name').value;
         let email = document.querySelector('#email').value;
         let password = document.querySelector('#password').value;
-        if (name && email && password ) {
+        if (name && email && password) {
             console.log('okk')
         } else {
             return alert('please fill the required detials')

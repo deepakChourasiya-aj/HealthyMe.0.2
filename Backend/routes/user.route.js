@@ -9,6 +9,7 @@ const {
   addToCart,
   removeProduct,
   availablePruductInCart,
+  updateQuantity
 } = require("../controller/cart.controller");
 
 // Register route
@@ -26,6 +27,9 @@ userRouter.post("/cart/:id", authenticated, addToCart);
 //removeProduct -----------------------------------------------------------
 
 userRouter.delete("/cart/:id", authenticated, removeProduct);
+
+// 
+userRouter.patch("/cart/:id", authenticated, updateQuantity);
 
 // availablePruductInCart -------------------------------------------------
 

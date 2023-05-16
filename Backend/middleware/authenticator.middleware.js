@@ -16,7 +16,7 @@ const authenticated = (req, res, next) => {
       }
     }
   } catch (error) {
-    res.send({ msg: "error in middlewares" });
+    res.send({ msg: "Please Login first" });
     console.log(error);
   }
 };

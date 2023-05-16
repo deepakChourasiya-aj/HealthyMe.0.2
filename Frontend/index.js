@@ -1,3 +1,5 @@
+const { Footer } = require("./script/footer");
+
 function changepage() {
   window.location.href = "./html/cartpage.html";
 }
@@ -19,6 +21,13 @@ if (userName) {
 //   footer.innerHTML = footerFunc();
 
 //---------------------------------------------------------------------------------
+
+
+import Footer from './script/footer';
+
+let displayFooter = document.getElementById("footer-section");
+displayFooter.innerHTML = Footer();
+
 
 checkURL();
 async function checkURL() {

@@ -47,6 +47,8 @@ function cartProduct(cxpurchase) {
       <h2 id="price">Price: ₹${item.price}</h2>
       <h3 id="Discount">Discount: ${item.discount}%</h3>
       <button id="${item._id}" class="remove" >Remove</button>
+      <button id="${item._id}" class="increase" >+</button>
+      <button id="${item._id}" class="decrease" >-</button>
     </div>
   </div>
     `;
@@ -61,9 +63,24 @@ function cartProduct(cxpurchase) {
          deleteProduct(e.target.id);
       });
     }
+
+    let increase = document.querySelectorAll(".increase");
+    for(let btns of increase){
+      btns.addEventListener("click",(e)=>{
+        e.preventDefault();
+         console.log(e.target.id);
+         increaseQuantity(e.target.id);
+      });
+    }
+    let decrease = document.querySelectorAll(".decrease");
+    for(let btns of decrease){
+      btns.addEventListener("click",(e)=>{
+        e.preventDefault();
+         console.log(e.target.id);
+         decreaseQuantity(e.target.id);
+      });
+    }
 }
-
-
 
 
 async function deleteProduct(id){
@@ -78,14 +95,37 @@ async function deleteProduct(id){
   location.reload()
   console.log(res);
 }
+async function increaseQuantity(id){
+  let res = await fetch(`${baseURL}/cart/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: JSON.parse(localStorage.getItem("token")),
+      "Content-Type": "application/json",
+    },
+    body:{
+      quantity:JSON.stringify(90)
+    }
+  });
+  res = await res.json();
+  location.reload()
+  console.log(res,'quantitiy');
+}
 
-
-
-
-
-
-
-
+async function decreaseQuantity(id){
+  let res = await fetch(`${baseURL}/cart/${id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: JSON.parse(localStorage.getItem("token")),
+      "Content-Type": "application/json",
+    },
+    body:{
+      quantity:JSON.stringify(90)
+    }
+  });
+  res = await res.json();
+  location.reload()
+  console.log(res,'quantitiy');
+}
 
 
 let ordersummary = document.querySelector(".ordersummary");
