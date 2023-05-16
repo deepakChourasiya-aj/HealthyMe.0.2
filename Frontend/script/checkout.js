@@ -14,7 +14,6 @@ async function checkoutProducts() {
   console.log(data);//check data 
 
   let cxpurchase = data.data.purchase;
-
   cartProduct(cxpurchase);
   var total = cxpurchase.reduce((acc, curr) => {
     return acc + curr.price;
@@ -59,10 +58,35 @@ function cartProduct(cxpurchase) {
       btns.addEventListener("click",(e)=>{
         e.preventDefault();
          console.log(e.target.id);
+         deleteProduct(e.target.id);
       });
-      
     }
 }
+
+
+
+
+async function deleteProduct(id){
+  let res = await fetch(`${baseURL}/cart/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: JSON.parse(localStorage.getItem("token")),
+      "Content-Type": "application/json",
+    },
+  });
+  res = await res.json();
+  location.reload()
+  console.log(res);
+}
+
+
+
+
+
+
+
+
+
 
 let ordersummary = document.querySelector(".ordersummary");
 
