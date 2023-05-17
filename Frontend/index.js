@@ -1,11 +1,5 @@
-const { Footer } = require("./script/footer");
 
-function changepage() {
-  window.location.href = "./html/cartpage.html";
-}
-function gotoCheckout() {
-  window.location.href = "checout.html";
-}
+
 let changeToName = document.getElementById("signup-to-name");
 let userName = JSON.parse(localStorage.getItem("name"));
 if (userName) {
@@ -22,11 +16,6 @@ if (userName) {
 
 //---------------------------------------------------------------------------------
 
-
-import Footer from './script/footer';
-
-let displayFooter = document.getElementById("footer-section");
-displayFooter.innerHTML = Footer();
 
 
 checkURL();

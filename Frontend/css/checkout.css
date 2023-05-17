@@ -1,5 +1,6 @@
 body{
     font-family: 'Poppins', sans-serif;
+    font-size: small;
 }
 
 .checoutpagemaindiv{
@@ -8,7 +9,7 @@ body{
    width: 90%;
    margin: auto;
    height: auto;
-
+  margin-top: 10px;
 }
 #productbox{
     width: 70%;
@@ -35,6 +36,7 @@ display: flex;
 }
 #two{
     width: 70%;
+    margin-top: 25px;
 }
 #delete{
     background-color: grey;
@@ -85,4 +87,7 @@ tr td:nth-child(2){
 }
 #payable{
     color: green
+}
+#priceflex>table>tr>td{
+ margin: 20px;
 }

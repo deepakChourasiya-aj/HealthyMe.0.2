@@ -1,5 +1,4 @@
- export default function Footer() {
-  return `
+document.getElementById("footer-section").innerHTML = `
   <div class="footerpart">
   <div class="divmain_inside_footer">
   <div class="divonefooter">
@@ -64,6 +63,3 @@
 </div>
 </div>
     `;
-}
- 
-

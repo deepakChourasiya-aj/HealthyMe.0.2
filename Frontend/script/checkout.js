@@ -43,9 +43,9 @@ function cartProduct(cxpurchase) {
       />
     </div>
     <div id="two">
-      <h3>${item.description}</h3>
+      <h4>${item.description}</h4>
       <h2 id="price">Price: ₹${item.price}</h2>
-      <h3 id="Discount">Discount: ${item.discount}%</h3>
+      <h5 id="Discount">Discount: ${item.discount}%</h5>
       <button id="${item._id}" class="remove" >Remove</button>
       <button id="${item._id}" class="increase" >+</button>
       <button id="${item._id}" class="decrease" >-</button>
@@ -137,21 +137,21 @@ function myOrderSummary() {
   <div id="priceflex">
    <table>
     <tr>
-      <td><h4>Total MRP</h4></td>
-      <td><h4>${localStorage.getItem("total")}</h4></td>
+      <td><h5>Total MRP</h5></td>
+      <td><h5>${localStorage.getItem("total")}</h5></td>
     </tr>
     <tr>
-      <td><h4>Total Discount</h4></td>
-      <td><h4>${localStorage.getItem("discountgivenin_rupee")}</h4></td>
+      <td><h5>Total Discount</h5></td>
+      <td><h5>${localStorage.getItem("discountgivenin_rupee")}</h5></td>
     </tr>
     <tr>
-      <td><h4>Shipping Charges</h4></td>
-      <td><h4 id="payable">Free</h4></td>
+      <td><h5>Shipping Charges</h5></td>
+      <td><h5 id="payable">Free</h5></td>
     </tr>
    </table>
    <table>
      <tr>
-      <td><h1 id="payable">Payable Amount</h1></td>
+      <td><h4 id="payable">Payable Amount</h4></td>
       <td><h2>₹${localStorage.getItem("discountedAmount")}</h2></td>
      </tr>
    </table>
@@ -162,5 +162,5 @@ function myOrderSummary() {
 myOrderSummary();
 
 function gotoPaymentPay() {
-  window.location.href = "payment.html";
+  window.location.href = "../html/billing.html";
 }

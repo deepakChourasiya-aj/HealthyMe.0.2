@@ -38,6 +38,23 @@ const allProducts = async (req, res) => {
   }
 };
 
+const searchProducts = async (req, res) => {
+  try {
+    let search = req.query.category;
+    // regex -- { name: { $regex: `.*${searchTerm}.*`, $options: 'i' } };
+    let product = await Product.find({
+      category: { $regex: `.*${search}.*`, $options: "i" },
+    });
+    if (product.length == 0) {
+      return res.status(201).send({ msg: "Not found", product });
+    }
+    res.status(201).send({ msg: "available products ", product });
+  } catch (error) {
+    res.status(500).send({ msg: "Server error" });
+    console.log(error);
+  }
+}
+
 const pagination = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
@@ -77,6 +94,7 @@ const updateProductsById = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
+
   }
 };
 
@@ -103,4 +121,5 @@ module.exports = {
   updateProductsById,
   deleteProductsById,
   pagination,
+  searchProducts
 };

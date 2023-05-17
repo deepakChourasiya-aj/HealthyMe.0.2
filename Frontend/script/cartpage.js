@@ -2,6 +2,8 @@
 
 const baseURL = "http://localhost:9000/api";
 
+// localhost:9000/api/products/search?category=why
+
 var Low_to_high = document.querySelector("#Productsort");
 // var url = "https://wild-lime-bluefish-boot.cyclic.app/admin/all/allproduct";
 
@@ -72,6 +74,23 @@ async function addToCart(id) {
     console.log(error);
   }
 }
+// ---------------------------Search functionality-----------------------------------------------------------
+
+
+// let searchInput = document.getElementById("search-input")
+// searchInput.addEventListener("submit",function(e){
+//   e.preventDefault();
+//   let input = document.getElementById("search-value").value;
+//   console.log(input);
+//  })
+
+
+
+
+
+
+
+
 
 // create pagination buttons dynamically -------------------------------------------------------
 function pageTotal(page) {

@@ -21,6 +21,9 @@ nav {
 }
 #navbar-healthyme {
   padding: 22px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 #brand {
   font-size: x-large;
@@ -123,6 +126,7 @@ a {
   text-align: center;
   padding: 14px;
   font-size: smaller;
+  margin-top: 85px;
 }
 
 .middlediv {
