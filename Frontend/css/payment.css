@@ -18,10 +18,9 @@ body{
 }
 /* conatiner part */
 .dee_container{
-    width: 750px;
-    height: 500px;
-    /* border: 3px solid rgb(14, 0, 0) ; */
-    margin:30px auto;
+    width: 650px;
+    height: 440px;
+    margin:80px auto;
     border-radius: 10px;
     background-color:skyblue;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;    display: flex;

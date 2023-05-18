@@ -11,9 +11,10 @@ const { productRoute } = require("./routes/product.route");
 const { authenticated } = require("./middleware/authenticator.middleware");
 const { admintRoute } = require("./routes/admin.route");
 const cors = require("cors");
+const { deliveryRoute } = require("./routes/address.route");
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("hello world!");
 });
@@ -25,6 +26,10 @@ app.use("/api", productRoute);
 
 //admin route;
 app.use("/api", admintRoute);
+
+//delivery address
+app.use("/api", deliveryRoute);
+
 // Start the server and establish a database connection
 app.listen(process.env.PORT || 8080, async () => {
   try {

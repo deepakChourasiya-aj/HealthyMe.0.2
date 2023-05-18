@@ -1,10 +1,11 @@
 
 
-let changeToName = document.getElementById("signup-to-name");
-let userName = JSON.parse(localStorage.getItem("name"));
-if (userName) {
-  changeToName.innerText = "Hii " + userName.split(" ")[0];
-}
+// let changeToName = document.getElementById("signup-to-name");
+// let userName = JSON.parse(localStorage.getItem("name"));
+// console.log(userName)
+// if (userName) {
+//   changeToName.innerText = "Hii " + userName.split(" ")[0];
+// }
 
 //   ------------------------------------------------------------------------------
 

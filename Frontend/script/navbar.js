@@ -36,3 +36,10 @@ document.getElementById(
     id="signup-to-name" href="./html/signup.html">Signup</a></button>
 <button class="btn btn-outline-success my-2 my-sm-0" id="checkout"><a href="./checkout.html"><img
         width="30" height="30" src="./images/checkout.png" alt=""></a></button>`;
+
+let changeToName = document.getElementById("signup-to-name");
+let userName = JSON.parse(localStorage.getItem("name"));
+console.log(userName);
+if (userName) {
+  changeToName.innerText = "Hii " + userName.split(" ")[0];
+}
