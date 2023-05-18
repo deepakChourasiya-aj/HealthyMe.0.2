@@ -69,9 +69,6 @@ display: flex;
     padding: 0px;
 }
 
-/* .ordersummary>div{
-    display: flex;
-} */
 table{
     width: 100%;
 }
@@ -86,8 +83,12 @@ tr td:nth-child(2){
 
 }
 #payable{
-    color: green
+    color: green;
+    padding:10px;
 }
 #priceflex>table>tr>td{
  margin: 20px;
+}
+.table{
+    padding: 10px;
 }

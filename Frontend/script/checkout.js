@@ -137,16 +137,16 @@ function myOrderSummary() {
   <div id="priceflex">
    <table>
     <tr>
-      <td><h5>Total MRP</h5></td>
-      <td><h5>${localStorage.getItem("total")}</h5></td>
+      <td class="table" ><h6>Total MRP</h6></td>
+      <td class="table" ><h6>${localStorage.getItem("total")}</h6></td>
     </tr>
     <tr>
-      <td><h5>Total Discount</h5></td>
-      <td><h5>${localStorage.getItem("discountgivenin_rupee")}</h5></td>
+      <td class="table" ><h6>Total Discount</h6></td>
+      <td class="table" ><h6>${localStorage.getItem("discountgivenin_rupee")}</h6></td>
     </tr>
     <tr>
-      <td><h5>Shipping Charges</h5></td>
-      <td><h5 id="payable">Free</h5></td>
+      <td class="table"><h6>Shipping Charges</h6></td>
+      <td  class="table" ><h6 id="payable">Free</h6></td>
     </tr>
    </table>
    <table>
