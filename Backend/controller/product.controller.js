@@ -53,7 +53,7 @@ const searchProducts = async (req, res) => {
     res.status(500).send({ msg: "Server error" });
     console.log(error);
   }
-}
+};
 
 const pagination = async (req, res) => {
   try {
@@ -82,19 +82,16 @@ const getProductById = async (req, res) => {
 const updateProductsById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const product = await Product.findByIdAndUpdate(id, req.body);
     if (!product) {
       return res.status(404).json({ msg: "Product not found" });
     }
     res
       .status(200)
-      .json({ msg: "Product details updated successfully", updatePrduct });
+      .json({ msg: "Product details updated successfully", product });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
-
   }
 };
 
@@ -121,5 +118,5 @@ module.exports = {
   updateProductsById,
   deleteProductsById,
   pagination,
-  searchProducts
+  searchProducts,
 };
