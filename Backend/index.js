@@ -36,6 +36,6 @@ app.listen(process.env.PORT || 8080, async () => {
     await connection;
     console.log("Connected to database");
   } catch (error) {
-    console.log("Error while connecting to database:", error);
+    console.log("Error while connecting to database", error);
   }
 });
