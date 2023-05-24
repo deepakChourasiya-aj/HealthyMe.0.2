@@ -16,6 +16,7 @@ Ecommerece website for health and fitness product.
 - Login/Signup
 - Product page
 - Cart page
+- Razorpay payment gateway
 - Admin page
 
 ## Backend Part
