@@ -1,14 +1,14 @@
 // for the sorting of low to high --------------------------------
 
-const baseURL = "http://localhost:9000/api";
+const baseURL = "https://nice-ruby-seahorse-belt.cyclic.app";
 
 // localhost:9000/api/products/search?category=why
-
+// CommonJS
 var Low_to_high = document.querySelector("#Productsort");
-// var url = "https://wild-lime-bluefish-boot.cyclic.app/admin/all/allproduct";
 
 async function data(baseURL) {
-  let data = await fetch(`${baseURL}/products`);
+  let data = await fetch(`${baseURL}/api/products`);
+  // let data = await fetch(`http://localhost:9000/api/products`);
   let res = await data.json();
   render(res.product);
   console.log(res);
@@ -52,45 +52,49 @@ async function render(res) {
   }
 }
 
-// localhost:9000/api/product/paginate?page=3&limit=10
 // add to cart functionality-----------------------------------------------------------------
+console.log(JSON.parse(localStorage.getItem("token"))); //check
 
 async function addToCart(id) {
   try {
-    let res = await fetch(
-      `${baseURL}/cart/${id}`,
-      {
-        method: "POST",
-        headers: {  
-          Authorization: JSON.parse(localStorage.getItem("token")),
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    let res = await fetch(`${baseURL}/api/cart/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("token")),
+        "Content-Type": "application/json",
+      },
+    });
     let data = await res.json();
     console.log(data);
-    alert(data.msg);
+    // alert(data.msg);
+    swal(data.msg);
   } catch (error) {
     console.log(error);
   }
 }
 // ---------------------------Search functionality-----------------------------------------------------------
 
+async function search() {
+  let searchInput = document.getElementById("search-value").value;
+  console.log(searchInput);
+  let data = await fetch(`${baseURL}/api/products`);
 
-// let searchInput = document.getElementById("search-input")
-// searchInput.addEventListener("submit",function(e){
-//   e.preventDefault();
-//   let input = document.getElementById("search-value").value;
-//   console.log(input);
-//  })
-
-
-
-
-
-
-
-
+  data = await data.json();
+  console.log(data.product, "data");
+  let res = data.product.filter((item) => {
+    return item.description
+      .toLowerCase()
+      .includes(searchInput.toLocaleLowerCase());
+  });
+  console.log(res);
+  // if(res.length==0){
+  //  return alert("Not found any related product..")
+  // }
+  render(res);
+  if (searchInput == "") {
+    render(data);
+  }
+}
 
 // create pagination buttons dynamically -------------------------------------------------------
 function pageTotal(page) {
@@ -126,10 +130,15 @@ async function applyPage(arr) {
 // Pagination feature here ;
 
 async function dataforPagination(id) {
-  let data = await fetch(`${baseURL}/products/paginate?page=${id}&limit=10`);
+  let data = await fetch(
+    `${baseURL}/api/products/paginate?page=${id}&limit=10`
+  );
   let res = await data.json();
   render(res.product);
 }
+
+// ---------------------------------------------------------------------------------
+//serach inpu
 
 // ----------------------------------------------------------------------------
 // sort selection functionality -----------------------------------------------
@@ -140,7 +149,7 @@ for (var i = 0; i < options.length; i++) {
   options[i].addEventListener("click", async function () {
     var selectedValue = this.value;
     console.log(selectedValue);
-    let data = await fetch(`${baseURL}/products?sort=${selectedValue}`);
+    let data = await fetch(`${baseURL}/api/products?sort=${selectedValue}`);
     let res = await data.json();
     render(res.product);
   });
@@ -153,7 +162,7 @@ for (var i = 0; i < discount_options.length; i++) {
   discount_options[i].addEventListener("click", async function () {
     var selectedValue = this.value;
     console.log(selectedValue);
-    let data = await fetch(`${baseURL}/products?discount=${selectedValue}`);
+    let data = await fetch(`${baseURL}/api/products?discount=${selectedValue}`);
     let res = await data.json();
     render(res.product);
   });
@@ -164,7 +173,21 @@ for (var i = 0; i < discount_options.length; i++) {
 let category = document.getElementById("category");
 category.addEventListener("click", async (e) => {
   let input = e.target.value;
-  let data = await fetch(`${baseURL}/products?category=${input}`);
+  let data = await fetch(`${baseURL}/api/products?category=${input}`);
   let res = await data.json();
   render(res.product);
 });
+
+// let inputVal = JSON.parse(localStorage.getItem("searchInput"))
+// if(inputVal){
+//   searchData(inputVal)
+// }else{
+//   localStorage.clear("searchInput")
+//   location.reload();
+// }
+// async function searchData(id) {
+//   let data = await fetch(`${baseURL}/products/search?category=${id}`);
+//   let res = await data.json();
+//   console.log(res.product);
+//   render(res.product);
+// }

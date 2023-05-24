@@ -1,9 +1,9 @@
-const baseURL = "http://localhost:9000/api";
+const baseURL = "https://nice-ruby-seahorse-belt.cyclic.app";
 
 const insideProductbox = document.querySelector("#productbox");
 
 async function checkoutProducts() {
-  let res = await fetch(`${baseURL}/cart`, {
+  let res = await fetch(`${baseURL}/api/cart`, {
     method: "GET",
     headers: {
       Authorization: JSON.parse(localStorage.getItem("token")),
@@ -11,15 +11,24 @@ async function checkoutProducts() {
     },
   });
   let data = await res.json();
-  console.log(data);//check data 
+  console.log(data); //check data
 
   let cxpurchase = data.data.purchase;
+
+
+// store the purchased products .
+ localStorage.setItem("purchaseProduct", JSON.stringify(cxpurchase));
+
+
   cartProduct(cxpurchase);
   var total = cxpurchase.reduce((acc, curr) => {
     return acc + curr.price;
   }, 0);
 
   localStorage.setItem("total", total);
+
+  // store the total price for making the order.
+  localStorage.setItem("amount", JSON.stringify(total));
 
   let discountedAmount = Math.floor(total - total * 0.1);
   localStorage.setItem("discountedAmount", discountedAmount);
@@ -55,36 +64,35 @@ function cartProduct(cxpurchase) {
     })
     .join(" ");
 
-    let removeButton = document.querySelectorAll(".remove");
-    for(let btns of removeButton){
-      btns.addEventListener("click",(e)=>{
-        e.preventDefault();
-         console.log(e.target.id);
-         deleteProduct(e.target.id);
-      });
-    }
+  let removeButton = document.querySelectorAll(".remove");
+  for (let btns of removeButton) {
+    btns.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(e.target.id);
+      deleteProduct(e.target.id);
+    });
+  }
 
-    let increase = document.querySelectorAll(".increase");
-    for(let btns of increase){
-      btns.addEventListener("click",(e)=>{
-        e.preventDefault();
-         console.log(e.target.id);
-         increaseQuantity(e.target.id);
-      });
-    }
-    let decrease = document.querySelectorAll(".decrease");
-    for(let btns of decrease){
-      btns.addEventListener("click",(e)=>{
-        e.preventDefault();
-         console.log(e.target.id);
-         decreaseQuantity(e.target.id);
-      });
-    }
+  let increase = document.querySelectorAll(".increase");
+  for (let btns of increase) {
+    btns.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(e.target.id);
+      increaseQuantity(e.target.id);
+    });
+  }
+  let decrease = document.querySelectorAll(".decrease");
+  for (let btns of decrease) {
+    btns.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(e.target.id);
+      decreaseQuantity(e.target.id);
+    });
+  }
 }
 
-
-async function deleteProduct(id){
-  let res = await fetch(`${baseURL}/cart/${id}`, {
+async function deleteProduct(id) {
+  let res = await fetch(`${baseURL}/api/cart/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: JSON.parse(localStorage.getItem("token")),
@@ -92,41 +100,40 @@ async function deleteProduct(id){
     },
   });
   res = await res.json();
-  location.reload()
+  location.reload();
   console.log(res);
 }
-async function increaseQuantity(id){
-  let res = await fetch(`${baseURL}/cart/${id}`, {
+async function increaseQuantity(id) {
+  let res = await fetch(`${baseURL}/api/cart/${id}`, {
     method: "PATCH",
     headers: {
       Authorization: JSON.parse(localStorage.getItem("token")),
       "Content-Type": "application/json",
     },
-    body:{
-      quantity:JSON.stringify(90)
-    }
+    body: {
+      quantity: JSON.stringify(90),
+    },
   });
   res = await res.json();
-  location.reload()
-  console.log(res,'quantitiy');
+  location.reload();
+  console.log(res, "quantitiy");
 }
 
-async function decreaseQuantity(id){
-  let res = await fetch(`${baseURL}/cart/${id}`, {
+async function decreaseQuantity(id) {
+  let res = await fetch(`${baseURL}/api/cart/${id}`, {
     method: "PATCH",
     headers: {
       Authorization: JSON.parse(localStorage.getItem("token")),
       "Content-Type": "application/json",
     },
-    body:{
-      quantity:JSON.stringify(90)
-    }
+    body: {
+      quantity: JSON.stringify(90),
+    },
   });
   res = await res.json();
-  location.reload()
-  console.log(res,'quantitiy');
+  location.reload();
+  console.log(res, "quantitiy");
 }
-
 
 let ordersummary = document.querySelector(".ordersummary");
 
@@ -142,7 +149,9 @@ function myOrderSummary() {
     </tr>
     <tr>
       <td class="table" ><h6>Total Discount</h6></td>
-      <td class="table" ><h6>${localStorage.getItem("discountgivenin_rupee")}</h6></td>
+      <td class="table" ><h6>${localStorage.getItem(
+        "discountgivenin_rupee"
+      )}</h6></td>
     </tr>
     <tr>
       <td class="table"><h6>Shipping Charges</h6></td>
@@ -163,4 +172,38 @@ myOrderSummary();
 
 function gotoPaymentPay() {
   window.location.href = "../html/billing.html";
+}
+
+// =========================PLACING THE ORDER=========================================
+async function Order() {
+
+  let amount = localStorage.getItem("amount");
+  let purchaseProduct = JSON.parse(localStorage.getItem("purchaseProduct"));
+  let receipt = Math.random(3000) + "helhyme#";
+  let order = {
+    amount: amount*100,
+    currency: "INR",
+    receipt: receipt,
+    notes: {
+      description: "Thank you for shopping healthy me",
+      product: "All product available at healthyme.com",
+      refundable: "Within 7 days",
+    },
+  };
+
+  let res = await fetch(`${baseURL}/createOrder`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(order),
+  });
+  res = await res.json();
+  if (res) {
+    localStorage.setItem("order_id", JSON.stringify(res.id));
+    window.location.href = "../html/billing.html";
+  } else {
+    alert("Server error try after some time ..");
+  }
+  console.log(res);
 }

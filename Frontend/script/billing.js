@@ -52,7 +52,7 @@ async function deliveryData(shipping_data) {
   console.log(shipping_data);
 
   try {
-    let res = await fetch("http://localhost:9000/api/address", {
+    let res = await fetch("https://nice-ruby-seahorse-belt.cyclic.app/api/address", {
       method: "POST",
       headers: {
         Authorization: JSON.parse(localStorage.getItem("token")),
@@ -63,7 +63,7 @@ async function deliveryData(shipping_data) {
     res = await res.json();
     if(res){
       alert(res.msg);
-      window.location.href="../payment.html"
+      window.location.href="../rzp-gateway.html"
     }
   } catch (error) {
     alert("Server error");

@@ -45,7 +45,7 @@
             <div class="line"></div>
 
             <div class="media-options">
-                <a href="http://localhost:8080/auth/github/callback" class="field github">
+                <a href="https://mock7auth.onrender.com/auth/github/callback" class="field github">
                     <img src="../images/github.png" alt="" class="github-img">
                     <span>Login with Github</span>
                 </a>
@@ -63,7 +63,7 @@
 
 </html>
 <script>
-    const baseURL = "http://localhost:9000/api"
+    const baseURL = "https://nice-ruby-seahorse-belt.cyclic.app/api"
 
     let button = document.querySelector('#signup')
     button.addEventListener('click', (e) => {
@@ -82,9 +82,8 @@
             email,
             password,
         }
-        console.log(obj)
+        console.log(obj);
         register(obj);
-
     })
 
 
