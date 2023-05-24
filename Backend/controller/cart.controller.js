@@ -19,7 +19,7 @@ const addToCart = async (req, res) => {
     await isUserPresent.save();
     res.status(201).json({ msg: "Product added successfully", isUserPresent });
   } else {
-    res.status(404).json({ msg: "Invalid id" });
+    res.status(500).json({ msg: "Invalid id" });
   }
 };
 

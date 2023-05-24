@@ -12,12 +12,42 @@ const { authenticated } = require("./middleware/authenticator.middleware");
 const { admintRoute } = require("./routes/admin.route");
 const cors = require("cors");
 const { deliveryRoute } = require("./routes/address.route");
+const Razorpay = require("razorpay");
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
   res.send("hello world!");
 });
+
+// ==============PAYMENT INTEGRATION==============================================
+
+const razorpayInstance = new Razorpay({
+  // Replace with your key_id
+  key_id: "rzp_test_FNJDYsapCj7Bdm",
+
+  // Replace with your key_secret
+  key_secret: "qX5Fsu6bJnyRNBxxdbzTcrqH",
+});
+
+//Inside app.js
+app.post("/createOrder", (req, res) => {
+  // STEP 1:
+  const { amount, currency, receipt, notes } = req.body;
+  // STEP 2:
+  razorpayInstance.orders.create(
+    { amount, currency, receipt, notes },
+    (err, order) => {
+      //STEP 3 & 4:
+      if (!err) res.json(order);
+      else res.send(err);
+    }
+  );
+});
+
+// =================================================================================
+
 // User routes;
 app.use("/api", userRouter);
 
@@ -39,3 +69,5 @@ app.listen(process.env.PORT || 8080, async () => {
     console.log("Error while connecting to database", error);
   }
 });
+
+// updated..

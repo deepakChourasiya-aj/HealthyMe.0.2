@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const authenticated = (req, res, next) => {
-  const token = req.cookies.token || req.headers.authorization;
+  const token = req.cookies.token || req.headers.authorization
   console.log(token,'token');
   try {
     if (token) {

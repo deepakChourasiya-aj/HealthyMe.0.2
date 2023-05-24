@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 require('dotenv').config();
-console.log(process.env.mongoURL,'url')
+// console.log(process.env.mongoURL,'url')
 // Set connection options
 // const connectionOptions = {
 //   poolSize: 10,
