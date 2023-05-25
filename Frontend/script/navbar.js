@@ -19,7 +19,7 @@ document.getElementById(
             Category
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="cartpage.html">Why Protein</a>
+            <a class="dropdown-item" href="cartpage.html">Whey Protein</a>
             <a class="dropdown-item" href="cartpage.html">Milk Protein</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="cartpage.html">Category</a>
