@@ -21,17 +21,17 @@ app.get("/", (req, res) => {
   res.send("hello world!");
 });
 
-// ==============PAYMENT INTEGRATION==============================================
+// ============== PAYMENT INTEGRATION ==============================================
 
 const razorpayInstance = new Razorpay({
-  // Replace with your key_id
+  //  key_id
   key_id: "rzp_test_FNJDYsapCj7Bdm",
 
-  // Replace with your key_secret
+  //  key_secret
   key_secret: "qX5Fsu6bJnyRNBxxdbzTcrqH",
 });
 
-//Inside app.js
+// createOrder
 app.post("/createOrder", (req, res) => {
   // STEP 1:
   const { amount, currency, receipt, notes } = req.body;
@@ -39,7 +39,7 @@ app.post("/createOrder", (req, res) => {
   razorpayInstance.orders.create(
     { amount, currency, receipt, notes },
     (err, order) => {
-      //STEP 3 & 4:
+      //STEP 3 and 4:
       if (!err) res.json(order);
       else res.send(err);
     }
