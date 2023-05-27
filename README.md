@@ -1,7 +1,7 @@
 
 # HealthyMe.com 
-rapid-competition-275
-Ecommerece website for health and fitness product.
+Ecommerce website for health and fitness products , it is a clone of HealthKart.com , It serves as a virtual storefront where customers can browse, select, and purchase items conveniently from their computers or mobile devices.
+
 
 ## Tech Stack
 
