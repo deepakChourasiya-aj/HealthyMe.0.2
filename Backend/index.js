@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("hello world!");
 });
 
-// ============== PAYMENT INTEGRATION ==============================================
+// ============== PAYMENT INTEGRATION SETUP ==============================================
 
 const razorpayInstance = new Razorpay({
   //  key_id
