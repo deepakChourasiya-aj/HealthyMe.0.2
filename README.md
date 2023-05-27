@@ -11,13 +11,11 @@ Ecommerece website for health and fitness product.
 
 
 ## Frontend Part
-
+- Razorpay payment gateway
 - Home page
 - Login/Signup
 - Product page
-- Cart page
-- Razorpay payment gateway
-- Admin page
+- OAuth
 
 ## Backend Part
 - Authentication using JWT
