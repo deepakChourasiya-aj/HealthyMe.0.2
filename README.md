@@ -10,8 +10,14 @@ Ecommerce website for health and fitness products , it is a clone of HealthKart.
 **Server:** Node, Express , MongoDB
 
 
+## Features 
+-  Authentication
+-  Payment-gateway-razorpay
+-  API Validation
+-  Buy product/Cart
+-  Searching/sorting/filtering
+
 ## Frontend Part
-- Razorpay payment gateway
 - Home page
 - Login/Signup
 - Product page
