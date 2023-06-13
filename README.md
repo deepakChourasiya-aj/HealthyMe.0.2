@@ -75,7 +75,7 @@ Ecommerce website for health and fitness products , it is a clone of HealthKart.
 ```http
   GET /api/product/paginate?page=3&limit=10
 ```
-#### For Serach 
+#### For Search 
 
 ```http
   GET /api/product/?serach="protein"
