@@ -30,7 +30,6 @@ Ecommerce website for health and fitness products , it is a clone of HealthKart.
 ### Database - 
     - MongoDB
 
-## API Reference
 
 
 ## API Reference
