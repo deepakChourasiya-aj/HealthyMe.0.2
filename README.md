@@ -89,6 +89,15 @@ Ecommerce website for health and fitness products , it is a clone of HealthKart.
     "password":"123456"  }
 
 
+ ### 
+`PRODUCT DATA...`
+
+    {
+         "image": "https://img5.hkrtcdn.com/16939/prd_1693894-MuscleBlaze-Chocolate-Peanut-Butter-0.340-kg-Crunchy_o.jpg",
+         "description": "MuscleBlaze Chocolate Peanut Butter, 1 kg, Creamy",
+         "category": "Peanut Butter",
+         "rating": 4.6,
+         "price": 180}
 
 
 ## Screenshots
