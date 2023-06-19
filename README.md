@@ -9,13 +9,6 @@ Ecommerce website for health and fitness products , it is a clone of HealthKart.
 
 **Server:** Node, Express , MongoDB
 
-## Deployment
-
-**Server side:** Render cloud https://abbtrybackend.onrender.com
-
-**Client side:** Vercel https://buycar-snowy.vercel.app/
-
-Note - Sorry due to time constraint frontend is not build perfectly,but i will improve in further.
 
 ## Features 
 -  Authentication
